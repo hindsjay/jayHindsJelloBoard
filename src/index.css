@@ -64,13 +64,19 @@ img {
 ***************************************/
 
 body,
-.sub-header button {
+button {
   font-family: 'Montserrat', serif;
 }
 
 .sub-header,
 .hamburger-container {
   display: flex;
+}
+
+button {
+  font-size: 1.6rem;
+  cursor: pointer;
+
 }
 
 /**************************************
@@ -93,22 +99,20 @@ header h1 {
 
 .sub-header {
   align-items: flex-end;
-  width: 85%;
-  justify-content: space-between;
   margin: 10px auto 0;
 }
 
 .sub-header p {
   font-size: 1.6rem;
+  margin-left: auto;
 }
 
 .sub-header button {
-  font-size: 1.6rem;
   padding: 10px 15px 7px;
-  cursor: pointer;
   background: rgba(255, 255, 255, .3);
   border: 1px solid lightgrey;
   border-radius: 5px;
+  margin-left: 20px;
 }
 
 
@@ -120,15 +124,29 @@ main {
   margin-top: 20px;
 }
 
-.tasks-container {
-  width: 300px;
-  height: 420px;
-  background-color: rgb(235, 236, 240);
-  margin: 0 auto;
-  border-radius: 5px;
+/* *************** 
+used this as a guide to help implement the horizontal scroll effect
+https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
+******************
+*/
+
+.scroll-wrapper {
+  height: 370px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
-.tasks-container h2 {
+.card-container {
+  width: 260px;
+  height: 350px;
+  background-color: rgb(235, 236, 240);
+  border-radius: 5px;
+  margin: 0 20px 10px 0;
+  flex: 0 0 auto;
+}
+
+.card-container h2 {
   padding: 15px;
 }
 
@@ -143,4 +161,28 @@ main {
 
 .task-item p {
   font-size: 1.7rem;
+}
+
+form {
+  text-align: center;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+input {
+  width: 290px;
+  height: 40px;
+  font-size: 1.6rem;
+  padding-left: 10px;
+  margin: 10px 0 20px;
+  border: 2px solid rgb(218, 218, 218);
+}
+
+form button {
+  height: 40px;
+  width: 150px;
+  background: rgb(110, 6, 173);
+  color: rgb(255, 255, 255);
+  border: none;
+  letter-spacing: 1px;
 }
