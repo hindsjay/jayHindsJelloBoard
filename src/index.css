@@ -124,6 +124,10 @@ main {
   margin-top: 20px;
 }
 
+main .wrapper {
+  min-height: 300px;
+}
+
 /* *************** 
 used this as a guide to help implement the horizontal scroll effect
 https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
@@ -131,19 +135,19 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 */
 
 .scroll-wrapper {
-  height: 370px;
+  min-height: 300px;
+  overflow-x: scroll;
+  overflow-y: hidden;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
 }
 
 .card-container {
   width: 260px;
-  height: 350px;
   background-color: rgb(235, 236, 240);
   border-radius: 5px;
-  margin: 0 20px 10px 0;
-  flex: 0 0 auto;
+  margin: 0 20px auto 0;
+  padding-bottom: 20px;
+  flex-shrink: 0;
 }
 
 .card-container h2 {
@@ -152,7 +156,6 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 
 .task-item {
   width: 90%;
-  height: 50px;
   background-color: rgb(255, 255, 255);
   margin: 0 auto 10px;
   box-shadow: 0px 1px 0px rgba(9, 30, 66, .25);
@@ -174,7 +177,7 @@ input {
   height: 40px;
   font-size: 1.6rem;
   padding-left: 10px;
-  margin: 10px 0 20px;
+  margin: 30px 0 20px;
   border: 2px solid rgb(218, 218, 218);
 }
 
