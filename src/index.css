@@ -69,7 +69,7 @@ button {
 }
 
 .sub-header,
-.hamburger-container {
+.edit-delete-container {
   display: flex;
 }
 
@@ -159,7 +159,7 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   background-color: rgb(255, 255, 255);
   margin: 0 auto 10px;
   box-shadow: 0px 1px 0px rgba(9, 30, 66, .25);
-  padding: 12px 10px;
+  padding: 12px 0 0 10px;
 }
 
 .task-item p {
@@ -188,4 +188,17 @@ form button {
   color: rgb(255, 255, 255);
   border: none;
   letter-spacing: 1px;
+}
+
+.edit-delete-container {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.edit-delete-container button {
+  font-size: 1.2rem;
+  border: none;
+  background: none;
+  margin: 0 8px 3px 3px;
+  padding: 0;
 }
