@@ -25,12 +25,7 @@ class Main extends Component {
 
       // for in loop to access each task item in our data object and push each task item to our new state array
       for (let key in data) {
-        const dataObject = {};
-
-        dataObject.id = key;
-        dataObject.value = data[key];
-
-        newState.push(dataObject);
+        newState.push({key: key, value: data[key]});
       }
 
       // execute setState to initiate re-render which will update our page with the task items that have been added to state
@@ -62,6 +57,14 @@ class Main extends Component {
   }
 
 
+  removeTask = (task) => {
+    // reference our database
+    const dbRef = firebase.database().ref();
+    // remove the task item of choice from database, which also results in the screen being updated due to the .on() method we initialized in the componentDidMount method
+    dbRef.child(task).remove();
+  }
+
+
   render() {
     return(
       <main>
@@ -73,8 +76,12 @@ class Main extends Component {
               {
                 this.state.tasks.map((task) => {
                   return (
-                    <div key={task.id} className="task-item">
+                    <div key={task.key} className="task-item">
                       <p>{task.value}</p>
+                      <div className="edit-delete-container">
+                        <button type="button">edit</button>
+                        <button type="button" onClick={ () => {this.removeTask(task.key)} }>delete</button>
+                      </div>
                     </div>
                   )
                 })
