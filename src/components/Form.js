@@ -1,14 +1,14 @@
 import React from 'react';
 
-
+// stateless component
 const Form = (props) => {
   return (
     <form>
-      <label htmlFor="task-input" className="sr-only"></label>
+      <label htmlFor="taskInput" className="srOnly"></label>
       <input 
         type="text" 
-        id="task-input" 
-        className="task-input" 
+        id="taskInput" 
+        className="taskInput" 
         placeholder="Input Task Here..."
         onChange={ (event) => {props.inputVal(event)} }
         value={props.userInputState}
