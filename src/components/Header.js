@@ -3,9 +3,9 @@ import React from 'react';
 // stateless component
 const Header = () => {
   return (
-    <header>
+    <header className="mainAppHeader">
       <h1>Title</h1>
-      <div className="sub-header wrapper">
+      <div className="subHeader wrapper">
         <p>Jay Hinds</p>
         <button>Menu</button>
       </div>
