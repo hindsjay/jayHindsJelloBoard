@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/jayHindsJelloBoard/static/css/main.6299036d.chunk.css",
+    "main.js": "/jayHindsJelloBoard/static/js/main.1a942bba.chunk.js",
+    "main.js.map": "/jayHindsJelloBoard/static/js/main.1a942bba.chunk.js.map",
+    "runtime-main.js": "/jayHindsJelloBoard/static/js/runtime-main.67e359a7.js",
+    "runtime-main.js.map": "/jayHindsJelloBoard/static/js/runtime-main.67e359a7.js.map",
+    "static/js/2.6613fb7a.chunk.js": "/jayHindsJelloBoard/static/js/2.6613fb7a.chunk.js",
+    "static/js/2.6613fb7a.chunk.js.map": "/jayHindsJelloBoard/static/js/2.6613fb7a.chunk.js.map",
+    "index.html": "/jayHindsJelloBoard/index.html",
+    "precache-manifest.d6fb9df1b1585a9335a9dbd890d34845.js": "/jayHindsJelloBoard/precache-manifest.d6fb9df1b1585a9335a9dbd890d34845.js",
+    "service-worker.js": "/jayHindsJelloBoard/service-worker.js",
+    "static/css/main.6299036d.chunk.css.map": "/jayHindsJelloBoard/static/css/main.6299036d.chunk.css.map",
+    "static/js/2.6613fb7a.chunk.js.LICENSE.txt": "/jayHindsJelloBoard/static/js/2.6613fb7a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.67e359a7.js",
+    "static/js/2.6613fb7a.chunk.js",
+    "static/css/main.6299036d.chunk.css",
+    "static/js/main.1a942bba.chunk.js"
+  ]
+}
