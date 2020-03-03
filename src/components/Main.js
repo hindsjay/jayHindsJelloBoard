@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Form from './Form.js';
 import firebase from '../utils/firebase.js';
 
@@ -7,9 +7,12 @@ class Main extends Component {
   constructor() {
     super()
 
+    this.editInput = React.createRef();
+
     this.state = {
       tasks: [],
       userInput: '',
+      editingInput: '',
     }
   }
 
@@ -25,7 +28,7 @@ class Main extends Component {
 
       // for in loop to access each task item in our data object and push each task item to our new state array
       for (let key in data) {
-        newState.push({key: key, value: data[key]});
+        newState.push({key: key, value: data[key], editing: false, list: 'initial'});
       }
 
       // execute setState to initiate re-render which will update our page with the task items that have been added to state
@@ -39,6 +42,13 @@ class Main extends Component {
   handleChange = (event) => {
     this.setState({
       userInput: event.target.value,
+    })
+  }
+
+
+  editHandleChange = (event) => {
+    this.setState({
+      editingInput: event.target.value,
     })
   }
 
@@ -65,23 +75,87 @@ class Main extends Component {
   }
 
 
+  editTask = (taskKey) => {
+    let inputValue;
+    this.state.tasks.forEach((taskItem) => {
+      if (taskItem.key === taskKey) {
+        taskItem.editing = !taskItem.editing;
+        inputValue = taskItem.value;
+      }
+    });
+
+    const updatedTasksState = [...this.state.tasks];
+
+    this.setState({
+      tasks: updatedTasksState,
+      editingInput: inputValue,
+    })
+
+    // this.editInput.current.focus();
+  }
+
+
+  saveTask = () => {
+    let editingKey;
+    console.log(this.state.tasks);
+    this.state.tasks.forEach((task) => {
+      if (task.editing) {
+        task.editing = !task.editing;
+        task.value = this.state.editingInput;
+        editingKey = task.key;
+      }
+    });
+
+    const updatedTasksState = [...this.state.tasks];
+
+    const dbRef = firebase.database().ref(editingKey);
+    
+    dbRef.set(this.state.editingInput);
+
+    this.setState({
+      tasks: updatedTasksState,
+      editingInput: '',
+    })
+  }
+
+
+  // moveTask = () => {
+
+  // }
+
+
   render() {
     return(
       <main>
         <div className="wrapper">
-          <div className="scroll-wrapper">
-            <section className="card-container">
+          <div className="scrollWrapper">
+            <section className="cardContainer">
               <h2>Task List</h2>
-              <div className="task-item-container">
+              <div className="taskItemContainer">
               {
                 this.state.tasks.map((task) => {
                   return (
-                    <div key={task.key} className="task-item">
-                      <p>{task.value}</p>
-                      <div className="edit-delete-container">
-                        <button type="button">edit</button>
-                        <button type="button" onClick={ () => {this.removeTask(task.key)} }>delete</button>
-                      </div>
+                    <div key={task.key} className="taskItem">
+                      { task.editing === false ? 
+                        <Fragment>
+                          <p>{task.value}</p> 
+                          <div className="editDeleteContainer">
+                            <button type="button" onClick={ () => {this.editTask(task.key)} }>edit</button>
+                            <button type="button" onClick={ () => {this.removeTask(task.key)} }>delete</button>
+                          </div>
+                        </Fragment>
+                        :
+                        <Fragment>
+                          <input 
+                            ref={this.editInput} 
+                            defaultValue={this.state.editingInput}
+                            onChange={this.editHandleChange}
+                          >
+                          </input>
+                          <button className="saveButton editModeButton" type="button" onClick={this.saveTask}>Save</button>
+                          <button className="moveButton editModeButton" type="button" onClick={this.moveTask}>Move</button> 
+                        </Fragment>
+                      }
                     </div>
                   )
                 })
@@ -89,11 +163,11 @@ class Main extends Component {
               </div>
             </section>
 
-            <section className="card-container">
+            <section className="cardContainer">
               <h2>In Progress</h2>
             </section>
 
-            <section className="card-container">
+            <section className="cardContainer">
               <h2>Done</h2>
             </section>
           </div>
