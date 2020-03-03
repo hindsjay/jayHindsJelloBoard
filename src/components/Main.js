@@ -147,28 +147,47 @@ class Main extends Component {
               {
                 this.state.tasks.map((task) => {
                   return (
+                    // <div key={task.key} className="taskItem">
+                    //   { task.editing === false ? 
+                    //     <Fragment>
+                    //       <p>{task.value}</p> 
+                    //       <div className="editDeleteContainer">
+                    //         <button type="button" onClick={ () => {this.editTask(task.key)} }>edit</button>
+                    //         <button type="button" onClick={ () => {this.removeTask(task.key)} }>delete</button>
+                    //       </div>
+                    //     </Fragment>
+                    //     :
+                    //     <Fragment>
+                    //       <input 
+                    //         ref={this.editInput} 
+                    //         defaultValue={this.state.editingInput}
+                    //         onChange={this.editHandleChange}
+                    //       >
+                    //       </input>
+                    //       <button className="saveButton editModeButton" type="button" onClick={this.saveTask}>Save</button>
+                    //       <button className="moveButton editModeButton" type="button" onClick={this.moveTask}>Move</button> 
+                    //     </Fragment>
+                    //   }
+                    // </div>
                     <div key={task.key} className="taskItem">
-                      { task.editing === false ? 
-                        <Fragment>
-                          <p>{task.value}</p> 
-                          <div className="editDeleteContainer">
-                            <button type="button" onClick={ () => {this.editTask(task.key)} }>edit</button>
-                            <button type="button" onClick={ () => {this.removeTask(task.key)} }>delete</button>
-                          </div>
-                        </Fragment>
-                        :
-                        <Fragment>
-                          <input 
-                            ref={this.editInput} 
-                            defaultValue={this.state.editingInput}
-                            onChange={this.editHandleChange}
-                          >
-                          </input>
-                          <button className="saveButton editModeButton" type="button" onClick={this.saveTask}>Save</button>
-                          <button className="moveButton editModeButton" type="button" onClick={this.moveTask}>Move</button> 
-                        </Fragment>
-                      }
-                    </div>
+                    { task.editing === false ? 
+                      <Task 
+                        taskValue={task.value}
+                        editTask={ () => {this.editTask(task.key)} }
+                        removeTask={ () => {this.removeTask(task.key)} }
+                      />
+                      :
+                      <Edit
+                        editingInput={this.state.editingInput}
+                        editHandleChange={this.editHandleChange}
+                        saveTask={this.saveTask}
+                        showPopup={this.showPopup}
+                        popupVisible={this.state.isPopupActive}
+                        moveToInProgress={this.moveTaskToInProgress}
+                        moveToDone={this.moveTaskToDone}
+                      />
+                    }
+                  </div>
                   )
                 })
               }
