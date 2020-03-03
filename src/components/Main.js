@@ -31,7 +31,7 @@ class Main extends Component {
         newState.push({key: key, value: data[key], editing: false});
       }
 
-      // execute setState to initiate re-render which will update our page with the task items that have been added to state
+      // execute setState to initiate re-render which will update our page with updated task items
       this.setState({
         tasks: newState,
       })
@@ -39,14 +39,16 @@ class Main extends Component {
   }
 
 
-  // fires each time a user inputs a value into main 
+  // fires each time a user inputs a value into main input when adding a task
+  // used to keep track of the values entered
   handleChange = (event) => {
     this.setState({
       userInput: event.target.value,
     })
   }
 
-
+  // fires each time a user inputs a value into the input field when editing a task
+  // like above used to keep track of values entered
   editHandleChange = (event) => {
     this.setState({
       editingInput: event.target.value,
@@ -54,10 +56,12 @@ class Main extends Component {
   }
 
 
+  // when the add task button is clicked this will add item to the database and also update the screen due to the .on method we have that fires each time the database is changed
   handleClick = (event) => {
     // prevent default action on form submission
     event.preventDefault();
 
+    // error handling if input field is blank
     if (this.state.userInput) {
       // reference to database
       const dbRef = firebase.database().ref();
@@ -73,6 +77,7 @@ class Main extends Component {
   }
 
 
+  // function to remove item
   removeTask = (task) => {
     // reference our database
     const dbRef = firebase.database().ref();
@@ -81,6 +86,7 @@ class Main extends Component {
   }
 
 
+  // function to edit task item - fires when edit button is clicked
   editTask = (taskKey) => {
     let inputValue;
     this.state.tasks.forEach((taskItem) => {
@@ -90,20 +96,24 @@ class Main extends Component {
       }
     });
 
+    // make copy of our tasks located in state to be used when updating state in setState
     const updatedTasksState = [...this.state.tasks];
 
     this.setState({
       tasks: updatedTasksState,
       editingInput: inputValue,
     })
-
   }
 
 
+  // save task function - fires when save button is clicked in "editing" mode
   saveTask = () => {
     let editingKey;
-    console.log(this.state.tasks);
+
+    // loop through each item in tasks array located in state
     this.state.tasks.forEach((task) => {
+      // if we're in editing mode then toggle the value to false so we're no longer stating we're in editing mode for that task
+      // then 
       if (task.editing) {
         task.editing = !task.editing;
         task.value = this.state.editingInput;
@@ -111,6 +121,7 @@ class Main extends Component {
       }
     });
 
+    // make copy of our tasks located in state to be used when updating state in setState
     const updatedTasksState = [...this.state.tasks];
 
     const dbRef = firebase.database().ref(editingKey);
