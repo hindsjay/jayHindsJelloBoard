@@ -10,7 +10,7 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 *, *:before, *:after {box-sizing: inherit}
 
-.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+.srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 
 /**************************************
@@ -64,30 +64,85 @@ img {
 ***************************************/
 
 body,
-button {
+button,
+.taskItem input {
   font-family: 'Montserrat', serif;
 }
 
-.sub-header,
-.edit-delete-container {
+.subHeader,
+.editDeleteContainer {
   display: flex;
 }
 
 button {
   font-size: 1.6rem;
   cursor: pointer;
-
 }
+
+
+/***************************************
+********  Welcome Page styles  *********
+***************************************/
+
+.welcomeHeaderContainer {
+  background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
+  min-height: 100vh;
+  color: white;
+  position: relative;
+}
+
+.welcomeHeader {
+  font-family: 'Oxanium', cursive;
+  font-size: 6.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 15px 0;
+}
+
+.welcomeHeader span {
+  display: block;
+}
+
+.welcomeContentContainer {
+  width: 80%;
+  max-width: 500px;
+  position: absolute;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  top: 45%;
+  left: 50%;
+}
+
+.welcomeContentContainer p {
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.welcomeContentContainer p:nth-child(2) {
+  margin-bottom: 20px;
+}
+
+.welcomeContentContainer button {
+  font-size: 2rem;
+  padding: 10px 25px;
+  border: none;
+  background-color: rgb(121, 204, 121);
+  color: white;
+  margin-top: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 
 /**************************************
 *********  header styles  *************
 ***************************************/
 
-header {
+.mainAppHeader {
   text-align: center;
 }
 
-header h1 {
+.mainAppHeader h1 {
   font-family: 'Oxanium', cursive;
   font-size: 3rem;
   letter-spacing: 2px;
@@ -97,17 +152,17 @@ header h1 {
   color: white;
 }
 
-.sub-header {
+.subHeader {
   align-items: flex-end;
   margin: 10px auto 0;
 }
 
-.sub-header p {
+.subHeader p {
   font-size: 1.6rem;
   margin-left: auto;
 }
 
-.sub-header button {
+.subHeader button {
   padding: 10px 15px 7px;
   background: rgba(255, 255, 255, .3);
   border: 1px solid lightgrey;
@@ -134,14 +189,14 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 ******************
 */
 
-.scroll-wrapper {
+.scrollWrapper {
   min-height: 300px;
   overflow-x: scroll;
   overflow-y: hidden;
   display: flex;
 }
 
-.card-container {
+.cardContainer {
   width: 260px;
   background-color: rgb(235, 236, 240);
   border-radius: 5px;
@@ -150,11 +205,11 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   flex-shrink: 0;
 }
 
-.card-container h2 {
+.cardContainer h2 {
   padding: 15px;
 }
 
-.task-item {
+.taskItem {
   width: 90%;
   background-color: rgb(255, 255, 255);
   margin: 0 auto 10px;
@@ -162,8 +217,14 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   padding: 12px 0 0 10px;
 }
 
-.task-item p {
+.taskItem p {
   font-size: 1.7rem;
+}
+
+.taskItem input {
+  height: 30px;
+  font-size: 1.7rem;
+  width: 90%;
 }
 
 form {
@@ -172,7 +233,7 @@ form {
   margin: 0 auto;
 }
 
-input {
+form input {
   width: 290px;
   height: 40px;
   font-size: 1.6rem;
@@ -190,15 +251,32 @@ form button {
   letter-spacing: 1px;
 }
 
-.edit-delete-container {
+.editDeleteContainer {
   flex-direction: row;
   justify-content: flex-end;
 }
 
-.edit-delete-container button {
+.editDeleteContainer button {
   font-size: 1.2rem;
   border: none;
   background: none;
   margin: 0 8px 3px 3px;
   padding: 0;
 }
+
+.editModeButton {
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 5px 10px 0;
+}
+
+.saveButton {
+  background-color: rgb(85, 209, 85);
+}
+
+.moveButton {
+  background-color: rgb(110, 6, 173);
+}
+
