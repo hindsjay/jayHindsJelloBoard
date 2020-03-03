@@ -28,7 +28,7 @@ class Main extends Component {
 
       // for in loop to access each task item in our data object and push each task item to our new state array
       for (let key in data) {
-        newState.push({key: key, value: data[key], editing: false, list: 'initial'});
+        newState.push({key: key, value: data[key], editing: false});
       }
 
       // execute setState to initiate re-render which will update our page with the task items that have been added to state
@@ -39,6 +39,7 @@ class Main extends Component {
   }
 
 
+  // fires each time a user inputs a value into main 
   handleChange = (event) => {
     this.setState({
       userInput: event.target.value,
@@ -56,14 +57,19 @@ class Main extends Component {
   handleClick = (event) => {
     // prevent default action on form submission
     event.preventDefault();
-    // reference to database
-    const dbRef = firebase.database().ref();
-    // whatever value is in state for userInput on submission/button click, we want to add this to our database
-    dbRef.push(this.state.userInput);
-    // reset state of input so it's blank
-    this.setState({
-      userInput: '',
-    })
+
+    if (this.state.userInput) {
+      // reference to database
+      const dbRef = firebase.database().ref();
+      // whatever value is in state for userInput on submission/button click, we want to add this to our database
+      dbRef.push(this.state.userInput);
+      // reset state of input so it's blank
+      this.setState({
+        userInput: '',
+      })
+    } else {
+      alert(`Please enter text into the input field`);
+    }
   }
 
 
@@ -91,7 +97,6 @@ class Main extends Component {
       editingInput: inputValue,
     })
 
-    // this.editInput.current.focus();
   }
 
 
@@ -118,10 +123,6 @@ class Main extends Component {
     })
   }
 
-
-  // moveTask = () => {
-
-  // }
 
 
   render() {
