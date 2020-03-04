@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/jayHindsJelloBoard/static/css/main.35a711c5.chunk.css",
+    "main.css": "/jayHindsJelloBoard/static/css/main.244a2a11.chunk.css",
     "main.js": "/jayHindsJelloBoard/static/js/main.24bcf619.chunk.js",
     "main.js.map": "/jayHindsJelloBoard/static/js/main.24bcf619.chunk.js.map",
     "runtime-main.js": "/jayHindsJelloBoard/static/js/runtime-main.67e359a7.js",
@@ -8,16 +8,16 @@
     "static/js/2.6613fb7a.chunk.js": "/jayHindsJelloBoard/static/js/2.6613fb7a.chunk.js",
     "static/js/2.6613fb7a.chunk.js.map": "/jayHindsJelloBoard/static/js/2.6613fb7a.chunk.js.map",
     "index.html": "/jayHindsJelloBoard/index.html",
-    "precache-manifest.b9fbf3c9a78269cb8196d494a2134214.js": "/jayHindsJelloBoard/precache-manifest.b9fbf3c9a78269cb8196d494a2134214.js",
+    "precache-manifest.31b70b1cc91699a2439fce3428a658d2.js": "/jayHindsJelloBoard/precache-manifest.31b70b1cc91699a2439fce3428a658d2.js",
     "service-worker.js": "/jayHindsJelloBoard/service-worker.js",
-    "static/css/main.35a711c5.chunk.css.map": "/jayHindsJelloBoard/static/css/main.35a711c5.chunk.css.map",
+    "static/css/main.244a2a11.chunk.css.map": "/jayHindsJelloBoard/static/css/main.244a2a11.chunk.css.map",
     "static/js/2.6613fb7a.chunk.js.LICENSE.txt": "/jayHindsJelloBoard/static/js/2.6613fb7a.chunk.js.LICENSE.txt",
     "static/media/index.css": "/jayHindsJelloBoard/static/media/sunset.3543586d.JPG"
   },
   "entrypoints": [
     "static/js/runtime-main.67e359a7.js",
     "static/js/2.6613fb7a.chunk.js",
-    "static/css/main.35a711c5.chunk.css",
+    "static/css/main.244a2a11.chunk.css",
     "static/js/main.24bcf619.chunk.js"
   ]
 }
