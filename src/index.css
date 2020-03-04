@@ -148,7 +148,6 @@ button {
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 15px 0;
-  /* background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173)); */
   background: rgba(0, 0, 0, .3);
   color: white;
 }
