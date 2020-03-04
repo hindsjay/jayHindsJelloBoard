@@ -9,8 +9,6 @@ class Main extends Component {
   constructor() {
     super()
 
-    this.editInput = React.createRef();
-
     this.state = {
       tasks: [],
       userInput: '',
@@ -19,6 +17,8 @@ class Main extends Component {
   }
 
 
+  // componentDidMount lifecycle method which executes once component mounts
+  // this allows us to sync the items in our database to our app (and therefore our UI) - items in our database will show up in our UI
   componentDidMount() {
     const dbRef = firebase.database().ref();
 
@@ -26,14 +26,13 @@ class Main extends Component {
     dbRef.on('value', (response) => {
       const newState = [];
       const data = response.val();
-      console.log(data);
 
       // for in loop to access each task item in our data object and push each task item to our new state array
       for (let key in data) {
         newState.push({key: key, value: data[key], editing: false});
       }
 
-      // execute setState to initiate re-render which will update our page with updated task items
+      // execute setState to initiate re-render which will update our page with task items in database (current and new ones (if there are any new ones) )
       this.setState({
         tasks: newState,
       })
@@ -74,7 +73,7 @@ class Main extends Component {
         userInput: '',
       })
     } else {
-      alert(`Please enter text into the input field`);
+      alert(`input cannot be left blank - please enter a task`);
     }
   }
 
@@ -114,8 +113,6 @@ class Main extends Component {
 
     // loop through each item in tasks array located in state
     this.state.tasks.forEach((task) => {
-      // if we're in editing mode then toggle the value to false so we're no longer stating we're in editing mode for that task
-      // then 
       if (task.editing) {
         task.editing = !task.editing;
         task.value = this.state.editingInput;
@@ -125,16 +122,16 @@ class Main extends Component {
 
     // make copy of our tasks located in state to be used when updating state in setState
     const updatedTasksState = [...this.state.tasks];
-
+    // reference to our database but reference to the specific task item we want to update the value of
     const dbRef = firebase.database().ref(editingKey);
-    
+    // updating the task value in our database to the value that's in our editingInput state
     dbRef.set(this.state.editingInput);
-
+    // update state and initiate re-render
     this.setState({
       tasks: updatedTasksState,
       editingInput: '',
     })
-  }
+  } 
 
 
   render() {
@@ -162,7 +159,7 @@ class Main extends Component {
                         saveTask={this.saveTask}
                       />
                     }
-                  </div>
+                    </div>
                   )
                 })
               }

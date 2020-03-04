@@ -15,7 +15,6 @@ class App extends Component {
 
 
   toggleEnteredState = () => {
-
     this.setState({
       notEntered: !this.state.notEntered
     })
