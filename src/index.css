@@ -77,6 +77,7 @@ button,
 button {
   font-size: 1.6rem;
   cursor: pointer;
+  transition: .3s all ease;
 }
 
 
@@ -126,11 +127,16 @@ button {
   font-size: 2rem;
   padding: 10px 25px;
   border: none;
-  background-color: rgb(121, 204, 121);
+  background: rgb(121, 204, 121);
   color: white;
   margin-top: 40px;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.welcomeContentContainer button:hover,
+.welcomeContentContainer button:focus {
+  background: rgba(121, 204, 121, .6);
 }
 
 
@@ -259,6 +265,11 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   letter-spacing: 1px;
 }
 
+.mainForm button:hover,
+.mainForm button:focus {
+  background: rgb(72, 133, 72);
+}
+
 .editDeleteContainer {
   flex-direction: row;
   justify-content: flex-end;
@@ -281,7 +292,12 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 }
 
 .saveButton {
-  background-color: rgb(85, 209, 85);
+  background: rgb(85, 209, 85);
+}
+
+.saveButton:hover,
+.saveButton:focus {
+  background: rgba(85, 209, 85, .6);
 }
 
 
