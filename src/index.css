@@ -285,3 +285,7 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 }
 
 
+/*******
+Note: 
+I wanted to bring to your attention that I didn't use any media queries because of my implementation of the horizontal scroll bar on the task items that gives the effect similar to that of Trello - this is what I was aiming for.  App looks and functions well at all breakpoints so I didn't see a need to throw in a media query 
+*/
