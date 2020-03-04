@@ -148,7 +148,8 @@ button {
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 15px 0;
-  background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
+  /* background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173)); */
+  background: rgba(0, 0, 0, .3);
   color: white;
 }
 
@@ -174,6 +175,13 @@ button {
 /**************************************
 ***********  main styles  *************
 ***************************************/
+
+.App {
+  background-image: url('./assets/sunset.JPG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 
 main {
   margin-top: 20px;
