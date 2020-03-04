@@ -236,7 +236,7 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 }
 
 .taskItem input {
-  height: 30px;
+  padding: 3px 0 3px 2px;
   font-size: 1.7rem;
   width: 90%;
 }
@@ -249,9 +249,8 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 
 .mainForm input {
   width: 290px;
-  height: 40px;
   font-size: 1.6rem;
-  padding-left: 10px;
+  padding: 8px 0 8px 10px;
   margin: 30px 0 20px;
   border: 2px solid rgb(218, 218, 218);
 }
