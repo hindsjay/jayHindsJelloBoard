@@ -7,7 +7,6 @@ const Edit = (props) => {
         <input 
           defaultValue={props.editingInput}
           onChange={props.editHandleChange}
-          required
         >
         </input>
         <button className="saveButton editModeButton" type="submit" onClick={props.saveTask}>Save</button>

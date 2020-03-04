@@ -3,7 +3,7 @@ import React from 'react';
 // stateless component
 const Form = (props) => {
   return (
-    <form>
+    <form className="mainForm">
       <label htmlFor="taskInput" className="srOnly"></label>
       <input 
         type="text" 
