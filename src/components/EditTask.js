@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
 
-// stateless component
+// stateless component when task item is in editing mode
 // props destructured
-function Edit({ editInputValue, editHandleChange, saveTask }) {
+function EditTask({ editInputValue, editHandleChange, saveTask }) {
   return (
     <Fragment>
       <form>
@@ -18,4 +18,4 @@ function Edit({ editInputValue, editHandleChange, saveTask }) {
   )
 }
 
-export default Edit;
+export default EditTask;
