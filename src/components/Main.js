@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Form from './Form.js';
 import firebase from '../utils/firebase.js';
 import Task from './Task.js';
-import Edit from './Edit.js';
 
 
 class Main extends Component {
@@ -12,13 +11,12 @@ class Main extends Component {
     this.state = {
       tasks: [],
       userInput: '',
-      editingInput: '',
     }
   }
 
 
   // componentDidMount lifecycle method which executes once component mounts
-  // this allows us to sync the items in our database to our app (and therefore our UI) - items in our database will show up in our UI
+  // this allows us to sync the items in our database to our app (and therefore our UI)
   componentDidMount() {
     const dbRef = firebase.database().ref();
 
@@ -29,7 +27,7 @@ class Main extends Component {
 
       // for in loop to access each task item in our data object and push each task item to our new state array
       for (let key in data) {
-        newState.push({key: key, value: data[key], editing: false});
+        newState.push({key: key, value: data[key]});
       }
 
       // execute setState to initiate re-render which will update our page with task items in database (current and new ones (if there are any new ones) )
@@ -47,15 +45,7 @@ class Main extends Component {
       userInput: event.target.value,
     })
   }
-
-  // fires each time a user inputs a value into the input field when editing a task
-  // like above used to keep track of values entered
-  editHandleChange = (event) => {
-    this.setState({
-      editingInput: event.target.value,
-    })
-  }
-
+  
 
   // when the add task button is clicked this will add item to the database and also update the screen due to the .on method we have that fires each time the database is changed
   handleClick = (event) => {
@@ -78,62 +68,6 @@ class Main extends Component {
   }
 
 
-  // function to remove item
-  removeTask = (task) => {
-    // reference our database
-    const dbRef = firebase.database().ref();
-    // remove the task item of choice from database, which also results in the screen being updated due to the .on() method we initialized in the componentDidMount method
-    dbRef.child(task).remove();
-  }
-
-
-  // function to edit task item - fires when edit button is clicked
-  editTask = (taskKey) => {
-    let inputValue;
-    this.state.tasks.forEach((taskItem) => {
-      if (taskItem.key === taskKey) {
-        taskItem.editing = !taskItem.editing;
-        inputValue = taskItem.value;
-      }
-    });
-
-    // make copy of our tasks located in state to be used when updating state in setState
-    const updatedTasksState = [...this.state.tasks];
-
-    this.setState({
-      tasks: updatedTasksState,
-      editingInput: inputValue,
-    })
-  }
-
-
-  // save task function - fires when save button is clicked in "editing" mode
-  saveTask = () => {
-    let editingKey;
-
-    // loop through each item in tasks array located in state
-    this.state.tasks.forEach((task) => {
-      if (task.editing) {
-        task.editing = !task.editing;
-        task.value = this.state.editingInput;
-        editingKey = task.key;
-      }
-    });
-
-    // make copy of our tasks located in state to be used when updating state in setState
-    const updatedTasksState = [...this.state.tasks];
-    // reference to our database but reference to the specific task item we want to update the value of
-    const dbRef = firebase.database().ref(editingKey);
-    // updating the task value in our database to the value that's in our editingInput state
-    dbRef.set(this.state.editingInput);
-    // update state and initiate re-render
-    this.setState({
-      tasks: updatedTasksState,
-      editingInput: '',
-    })
-  } 
-
-
   render() {
     return(
       <main>
@@ -141,29 +75,19 @@ class Main extends Component {
           <div className="scrollWrapper">
             <section className="cardContainer">
               <h2>Task List</h2>
-              <div className="taskItemContainer">
               {
                 this.state.tasks.map((task) => {
                   return (
                     <div key={task.key} className="taskItem">
-                    { task.editing === false ? 
                       <Task 
+                        dbRefInfo={firebase.database()}
                         taskValue={task.value}
-                        editTask={ () => {this.editTask(task.key)} }
-                        removeTask={ () => {this.removeTask(task.key)} }
+                        taskKey={task.key}
                       />
-                      :
-                      <Edit
-                        editingInput={this.state.editingInput}
-                        editHandleChange={this.editHandleChange}
-                        saveTask={this.saveTask}
-                      />
-                    }
                     </div>
                   )
                 })
               }
-              </div>
             </section>
 
             {/* One of my stretch goals was to include the functionality to move each task to a different column - I decided to stick to the MVP for this project and will work on this feature afterwards */}
