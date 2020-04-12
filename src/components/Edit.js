@@ -5,7 +5,7 @@ const Edit = (props) => {
     <Fragment>
       <form>
         <input 
-          defaultValue={props.editingInput}
+          defaultValue={props.editInputValue}
           onChange={props.editHandleChange}
         >
         </input>
