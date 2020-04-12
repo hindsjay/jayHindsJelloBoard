@@ -1,15 +1,18 @@
 import React, { Fragment } from 'react';
 
-const Edit = (props) => {
+
+// stateless component
+// props destructured
+function Edit({ editInputValue, editHandleChange, saveTask }) {
   return (
     <Fragment>
       <form>
         <input 
-          defaultValue={props.editInputValue}
-          onChange={props.editHandleChange}
+          defaultValue={editInputValue}
+          onChange={editHandleChange}
         >
         </input>
-        <button className="saveButton editModeButton" type="submit" onClick={props.saveTask}>Save</button>
+        <button className="saveButton editModeButton" type="submit" onClick={saveTask}>Save</button>
       </form>
     </Fragment>
   )
