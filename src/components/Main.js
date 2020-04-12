@@ -75,19 +75,17 @@ class Main extends Component {
           <div className="scrollWrapper">
             <section className="cardContainer">
               <h2>Task List</h2>
-              {
-                this.state.tasks.map((task) => {
-                  return (
-                    <div key={task.key} className="taskItem">
-                      <Task 
-                        dbRefInfo={firebase.database()}
-                        taskValue={task.value}
-                        taskKey={task.key}
-                      />
-                    </div>
-                  )
-                })
-              }
+              { this.state.tasks.map((task) => {
+                return (
+                  <div key={task.key} className="taskItem">
+                    <Task 
+                      dbRefInfo={firebase.database()}
+                      taskValue={task.value}
+                      taskKey={task.key}
+                    />
+                  </div>
+                )
+              }) }
             </section>
 
             {/* One of my stretch goals was to include the functionality to move each task to a different column - I decided to stick to the MVP for this project and will work on this feature afterwards */}

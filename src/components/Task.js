@@ -55,28 +55,27 @@ class Task extends Component {
   render() {
     return (
       <Fragment>
-        {
-         this.state.editing ? 
-           <Edit
-             editInputValue={this.state.editingInputValue}
-             editHandleChange={this.editHandleChange}
-             saveTask={ () => {this.saveTask(this.props.dbRefInfo, this.props.taskKey)} }
-           /> :
-           <div>
-              <p>{this.props.taskValue}</p> 
-              <div className="editDeleteContainer">
-                <button 
-                  type="button" 
-                  onClick={ () => {this.editTask(this.props.taskValue)} }>edit</button>
-                
-                <button 
-                  type="button" 
-                  onClick={ () => {this.removeTask(this.props.dbRefInfo, this.props.taskKey)} }
-                  >delete
-                </button>
-              </div>
+        { this.state.editing ? 
+          <Edit 
+            editInputValue={this.state.editingInputValue}
+            editHandleChange={this.editHandleChange}
+            saveTask={ () => {this.saveTask(this.props.dbRefInfo, this.props.taskKey)} }
+          /> :
+          <Fragment>
+            <p>{this.props.taskValue}</p> 
+            <div className="editDeleteContainer">
+              <button 
+                type="button" 
+                onClick={ () => {this.editTask(this.props.taskValue)} }>edit</button>
+              
+              <button 
+                type="button" 
+                onClick={ () => {this.removeTask(this.props.dbRefInfo, this.props.taskKey)} }
+              >
+                delete
+              </button>
             </div>
-        }
+          </Fragment> }
       </Fragment>
     )
   }
