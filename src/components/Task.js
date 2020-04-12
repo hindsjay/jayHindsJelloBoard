@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import Edit from './Edit.js';
+import EditTask from './EditTask.js';
+import TaskItem from './TaskItem';
 
 
 class Task extends Component {
@@ -11,7 +12,6 @@ class Task extends Component {
       editingInputValue: '',
     };
   }
-
   
   // fires each time a user inputs a value into the input field when editing a task
   editHandleChange = (event) => {
@@ -20,22 +20,18 @@ class Task extends Component {
     })
   }
 
-
   // function to remove item
   removeTask = (referenceToDb, task) => {
     referenceToDb.ref().child(task).remove();
   }
 
-
   // function to edit task item - fires when edit button is clicked
   editTask = (taskValue) => {
-
     this.setState({
       editing: !this.state.editing,
       editingInputValue: taskValue,
     })
   }
-
 
   // save task function - fires when save button is clicked in "editing" mode
   saveTask = (referenceToDb, task) => {
@@ -51,31 +47,20 @@ class Task extends Component {
     })
   } 
 
-
   render() {
     return (
       <Fragment>
         { this.state.editing ? 
-          <Edit 
+          <EditTask 
             editInputValue={this.state.editingInputValue}
             editHandleChange={this.editHandleChange}
             saveTask={ () => {this.saveTask(this.props.dbRefInfo, this.props.taskKey)} }
           /> :
-          <Fragment>
-            <p>{this.props.taskValue}</p> 
-            <div className="editDeleteContainer">
-              <button 
-                type="button" 
-                onClick={ () => {this.editTask(this.props.taskValue)} }>edit</button>
-              
-              <button 
-                type="button" 
-                onClick={ () => {this.removeTask(this.props.dbRefInfo, this.props.taskKey)} }
-              >
-                delete
-              </button>
-            </div>
-          </Fragment> }
+          <TaskItem
+            taskValue={this.props.taskValue}
+            editTask={ () => {this.editTask(this.props.taskValue)} }
+            removeTask={ () => {this.removeTask(this.props.dbRefInfo, this.props.taskKey)} }
+          /> }
       </Fragment>
     )
   }

@@ -14,7 +14,6 @@ class Main extends Component {
     }
   }
 
-
   // componentDidMount lifecycle method which executes once component mounts
   // this allows us to sync the items in our database to our app (and therefore our UI)
   componentDidMount() {
@@ -37,7 +36,6 @@ class Main extends Component {
     });
   }
 
-
   // fires each time a user inputs a value into main input when adding a task
   // used to keep track of the values entered
   handleChange = (event) => {
@@ -46,7 +44,6 @@ class Main extends Component {
     })
   }
   
-
   // when the add task button is clicked this will add item to the database and also update the screen due to the .on method we have that fires each time the database is changed
   handleClick = (event) => {
     // prevent default action on form submission
@@ -66,7 +63,6 @@ class Main extends Component {
       alert(`input cannot be left blank - please enter a task`);
     }
   }
-
 
   render() {
     return(
