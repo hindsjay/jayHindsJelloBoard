@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 // stateless component
-const Form = (props) => {
+// props destructured
+function Form({ inputVal, userInputState, handleClick }) {
   return (
     <form className="mainForm">
       <label htmlFor="taskInput" className="srOnly"></label>
@@ -10,11 +12,11 @@ const Form = (props) => {
         id="taskInput" 
         className="taskInput" 
         placeholder="Input Task Here..."
-        onChange={ (event) => {props.inputVal(event)} }
-        value={props.userInputState}
+        onChange={ (event) => {inputVal(event)} }
+        value={userInputState}
       >
       </input>
-      <button type="submit" onClick={ (event) => {props.handleClick(event)} }>Add Task</button>
+      <button type="submit" onClick={ (event) => {handleClick(event)} }>Add Task</button>
     </form>
   )
 };
