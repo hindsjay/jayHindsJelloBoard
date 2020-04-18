@@ -185,7 +185,7 @@ button {
   background-image: url('./assets/sunset.JPG');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 main {
@@ -235,7 +235,7 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 }
 
 .taskItem:last-child {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .taskItem p {
@@ -252,6 +252,7 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   text-align: center;
   max-width: 430px;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 
 .mainForm input {
@@ -313,7 +314,7 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   position: absolute;
   top: 28%;
   left: 281px;
-  min-width: 200px;
+  min-width: 417px;
 }
 
 .notificationContainer p {
