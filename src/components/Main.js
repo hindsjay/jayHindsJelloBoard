@@ -92,8 +92,12 @@ class Main extends Component {
             <section className="cardContainer">
               <h2>Done</h2>
             </section>
-          </div>
-        </div>
+
+            <div className="notificationContainer">
+              <p>Feature to move tasks is currently in development</p>
+            </div>
+          </div>  {/*  .scrollWrapper end  */}
+        </div>  {/*  .wrapper end  */}
 
         <Form 
           inputVal={this.handleChange} 
