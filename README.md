@@ -17,7 +17,6 @@ The main purpose of the project was to utilize the concepts learned to build a p
 **Future features looking to implement:**
 - Add user authentication and guest account access
 - This project provides a good opportunity to gain exposure to the MERN stack  
-
-
+  
 
 Project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
