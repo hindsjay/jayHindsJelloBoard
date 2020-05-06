@@ -20,6 +20,7 @@ The main purpose of the project was to utilize the concepts learned to build a p
 
 **Future features looking to implement:**
 -----------------------------------------
+- Add feature to move tasks to either "in progress" or "done" statuses
 - Add user authentication and guest account access
 - Update mobile layout --> feedback suggests there is an opportunity to update the layout for mobile.  Horizontal scroll effect does not seem to provide the kind of user experience I thought it would
 - This project provides a good opportunity to gain exposure to the MERN stack
