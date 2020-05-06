@@ -1,5 +1,4 @@
 # Jello Board - A Simple Task Manager
--------------------------------------
 
 This project was built during my time at Juno College of Technology's Immersive Web Development Bootcamp.  
 
@@ -26,5 +25,5 @@ The main purpose of the project was to utilize the concepts learned to build a p
 - This project provides a good opportunity to gain exposure to the MERN stack
   
 
-------------------------------------------
+---
 Project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
