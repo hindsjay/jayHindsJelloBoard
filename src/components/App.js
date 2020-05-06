@@ -24,13 +24,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {
-          this.state.notEntered 
-            ? <Welcome enterButtonClicked={this.toggleEnteredState} /> 
-            : <Fragment>
-                <Header />
-                <Main />
-              </Fragment>
+        { this.state.notEntered 
+          ? <Welcome enterButtonClicked={this.toggleEnteredState} /> 
+          : <Fragment>
+              <Header />
+              <Main />
+            </Fragment>
         }
       </div>
     );

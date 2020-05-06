@@ -84,7 +84,6 @@ class Main extends Component {
               }) }
             </section>
 
-            {/* One of my stretch goals was to include the functionality to move each task to a different column - I decided to stick to the MVP for this project and will work on this feature afterwards */}
             <section className="cardContainer">
               <h2>In Progress</h2>
             </section>

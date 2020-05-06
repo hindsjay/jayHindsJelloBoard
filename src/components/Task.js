@@ -20,7 +20,6 @@ class Task extends Component {
     })
   }
 
-  // function to remove item
   removeTask = (referenceToDb, task) => {
     referenceToDb.ref().child(task).remove();
   }
@@ -40,7 +39,6 @@ class Task extends Component {
     // updating the task value in our database to the value that's in our editingInput state
     taskItemInDb.set(this.state.editingInputValue);
 
-    // update state and initiate re-render
     this.setState({
       editing: !this.state.editing,
       editingInputValue: '',
@@ -60,7 +58,8 @@ class Task extends Component {
             taskValue={this.props.taskValue}
             editTask={ () => {this.editTask(this.props.taskValue)} }
             removeTask={ () => {this.removeTask(this.props.dbRefInfo, this.props.taskKey)} }
-          /> }
+          /> 
+        }
       </Fragment>
     )
   }
