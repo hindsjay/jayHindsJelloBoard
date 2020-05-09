@@ -89,7 +89,9 @@ button {
   background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
   min-height: 100vh;
   color: white;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .welcomeHeader {
@@ -98,6 +100,7 @@ button {
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 15px 0;
+  margin: 30px 0;
 }
 
 .welcomeHeader span {
@@ -107,11 +110,9 @@ button {
 .welcomeContentContainer {
   width: 80%;
   max-width: 500px;
-  position: absolute;
   text-align: center;
-  transform: translate(-50%, -50%);
-  top: 45%;
-  left: 50%;
+  margin-top: 30px;
+  padding-bottom: 50px;
 }
 
 .welcomeContentContainer p {
@@ -120,7 +121,7 @@ button {
 }
 
 .welcomeContentContainer p:nth-child(2) {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .welcomeContentContainer button {
@@ -137,6 +138,23 @@ button {
 .welcomeContentContainer button:hover,
 .welcomeContentContainer button:focus {
   background: rgba(121, 204, 121, .6);
+}
+
+.welcomePageFlexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcomePageImageContainer {
+  width: 90%;
+  height: 100%;
+}
+
+.welcomePageImage {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 
@@ -323,7 +341,27 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 }
 
 
-/*******
-Note: 
-I wanted to bring to your attention that I didn't use any media queries because of my implementation of the horizontal scroll bar on the task items that gives the effect similar to that of Trello - this is what I was aiming for.  App looks and functions well at all breakpoints so I didn't see a need to throw in a media query 
-*/
+/**************************************
+**********  media-queries  ************
+***************************************/
+
+@media (min-width: 700px) {
+  .welcomePageFlexContainer {
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-bottom: 80px;
+    max-width: 1070px;
+    margin: 0 auto;
+  }
+
+  .welcomePageImageContainer {
+    order: 1;
+    max-width: 410px;
+  }
+
+  .welcomeContentContainer {
+    max-width: 300px;
+    text-align: unset;
+  }
+}
