@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Form from './Form.js';
 import firebase from '../utils/firebase.js';
 import Task from './Task.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 class Main extends Component {
@@ -72,16 +74,21 @@ class Main extends Component {
             <section className="cardContainer">
               <h2>Task List</h2>
               { this.state.tasks.map((task) => {
-                return (
-                  <div key={task.key} className="taskItem">
-                    <Task 
-                      dbRefInfo={firebase.database()}
-                      taskValue={task.value}
-                      taskKey={task.key}
-                    />
-                  </div>
-                )
-              }) }
+                  return (
+                    <div key={task.key} className="taskItem">
+                      <Task 
+                        dbRefInfo={firebase.database()}
+                        taskValue={task.value}
+                        taskKey={task.key}
+                      />
+                    </div>
+                  )
+                }) 
+              }
+              <button className="addTaskButton">
+                <FontAwesomeIcon icon={faPlusCircle} className="plusSignIcon" />
+                Add new task item
+              </button>
             </section>
 
             <section className="cardContainer">

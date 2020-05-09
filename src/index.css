@@ -244,6 +244,26 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   padding: 15px;
 }
 
+.plusSignIcon {
+  font-size: 1.9rem;
+  color: rgb(73, 80, 87);
+}
+
+.addTaskButton {
+  border: none;
+  background: inherit;
+  font-size: 1.4rem;
+  color: rgb(73, 80, 87);
+  font-weight: 600;
+  padding: 10px 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.addTaskButton svg {
+  margin-right: 5px;
+}
+
 .taskItem {
   width: 90%;
   background-color: rgb(255, 255, 255);
