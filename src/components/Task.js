@@ -45,19 +45,40 @@ class Task extends Component {
     })
   } 
 
+  
   render() {
+    const { 
+      taskValue, 
+      taskKey, 
+      dbRefInfo, 
+      toggleAddingClass, 
+      addingTaskState, 
+      inputVal, 
+      userInputState, 
+      handleClick 
+    } = this.props;
+
     return (
       <Fragment>
-        { this.state.editing ? 
+        { addingTaskState ? 
+          <EditTask 
+            addingTaskState={addingTaskState} 
+            toggleAddingClass={toggleAddingClass} 
+            userInputState={userInputState}
+            inputVal={inputVal}
+            saveButton={handleClick}
+          /> 
+          :
+          this.state.editing ? 
           <EditTask 
             editInputValue={this.state.editingInputValue}
             editHandleChange={this.editHandleChange}
-            saveTask={ () => {this.saveTask(this.props.dbRefInfo, this.props.taskKey)} }
+            saveTask={ () => {this.saveTask(dbRefInfo, taskKey)} }
           /> :
           <TaskItem
-            taskValue={this.props.taskValue}
-            editTask={ () => {this.editTask(this.props.taskValue)} }
-            removeTask={ () => {this.removeTask(this.props.dbRefInfo, this.props.taskKey)} }
+            taskValue={taskValue}
+            editTask={ () => {this.editTask(taskValue)} }
+            removeTask={ () => {this.removeTask(dbRefInfo, taskKey)} }
           /> 
         }
       </Fragment>

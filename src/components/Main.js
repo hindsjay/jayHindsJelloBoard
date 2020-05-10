@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Form from './Form.js';
 import firebase from '../utils/firebase.js';
 import Task from './Task.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 class Main extends Component {
@@ -13,6 +12,7 @@ class Main extends Component {
     this.state = {
       tasks: [],
       userInput: '',
+      isAddingTask: false,
     }
   }
 
@@ -60,14 +60,23 @@ class Main extends Component {
       // reset state of input so it's blank
       this.setState({
         userInput: '',
+        isAddingTask: !this.state.isAddingTask,
       })
     } else {
       alert(`input cannot be left blank - please enter a task`);
     }
   }
 
+  toggleAddingTaskState = () => {
+    this.setState({
+      isAddingTask: !this.state.isAddingTask,
+      userInput: '',
+    })
+  }
+
+
   render() {
-    return(
+    return (
       <main>
         <div className="wrapper">
           <div className="scrollWrapper">
@@ -85,10 +94,23 @@ class Main extends Component {
                   )
                 }) 
               }
-              <button className="addTaskButton">
-                <FontAwesomeIcon icon={faPlusCircle} className="plusSignIcon" />
-                Add new task item
-              </button>
+
+              { this.state.isAddingTask ? 
+                <div className="taskItem">
+                  <Task 
+                    toggleAddingClass={this.toggleAddingTaskState} 
+                    addingTaskState={this.state.isAddingTask}
+                    dbRefInfo={firebase.database()}
+                    inputVal={this.handleChange} 
+                    userInputState={this.state.userInput} 
+                    handleClick={this.handleClick}
+                  />
+                </div> :
+                <button className="addTaskButton" onClick={this.toggleAddingTaskState}>
+                  <FontAwesomeIcon icon={faPlusCircle} className="plusSignIcon" />
+                  Add new task item
+                </button>
+              }
             </section>
 
             <section className="cardContainer">
@@ -104,12 +126,6 @@ class Main extends Component {
             </div>
           </div>  {/*  .scrollWrapper end  */}
         </div>  {/*  .wrapper end  */}
-
-        <Form 
-          inputVal={this.handleChange} 
-          userInputState={this.state.userInput} 
-          handleClick={this.handleClick}
-        />
       </main>
     )
   }
