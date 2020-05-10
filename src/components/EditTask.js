@@ -9,14 +9,17 @@ function EditTask({ editInputValue, editHandleChange, saveTask, inputVal, userIn
     <Fragment>
       <form className="taskForm">
         { addingTaskState ?
-          <input 
-            type="text" 
-            id="taskInput" 
-            className="taskInput"
-            onChange={ (event) => {inputVal(event)} }
-            value={userInputState}
-          >
-          </input> :
+          <Fragment>
+            <label htmlFor="taskInput" className="srOnly"></label>
+            <input 
+              type="text" 
+              id="taskInput" 
+              className="taskInput"
+              onChange={ (event) => {inputVal(event)} }
+              value={userInputState}
+            >
+            </input>
+          </Fragment> :
           <input 
             defaultValue={editInputValue}
             onChange={editHandleChange}
