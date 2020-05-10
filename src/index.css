@@ -252,12 +252,16 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 .closeButton {
   border: none;
   padding: 0;
+  color: rgb(128, 49, 49);
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: rgba(128, 49, 49, .6);
 }
 
 .closeIcon {
   font-size: 4.1rem;
-  color: rgb(128, 49, 49);
-  cursor: pointer;
   background: rgb(255, 255, 255);
 }
 
@@ -302,35 +306,6 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   padding: 3px 0 3px 2px;
   font-size: 1.7rem;
   width: 90%;
-}
-
-.mainForm {
-  text-align: center;
-  max-width: 430px;
-  margin: 0 auto;
-  padding-bottom: 30px;
-}
-
-.mainForm input {
-  width: 290px;
-  font-size: 1.6rem;
-  padding: 8px 0 8px 10px;
-  margin: 30px 0 20px;
-  border: 2px solid rgb(218, 218, 218);
-}
-
-.mainForm button {
-  height: 40px;
-  width: 150px;
-  background: rgb(110, 6, 173);
-  color: rgb(255, 255, 255);
-  border: none;
-  letter-spacing: 1px;
-}
-
-.mainForm button:hover,
-.mainForm button:focus {
-  background: rgb(72, 133, 72);
 }
 
 .editDeleteContainer {
