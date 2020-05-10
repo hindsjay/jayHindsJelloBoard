@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as HeaderSvg } from '../assets/header-image.svg'
+import { ReactComponent as HeaderSvg } from '../assets/header-image.svg';
 
 
 // props destructured
