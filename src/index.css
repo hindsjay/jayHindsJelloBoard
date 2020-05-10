@@ -70,7 +70,12 @@ button,
 }
 
 .subHeader,
-.editDeleteContainer {
+.editDeleteContainer,
+.welcomeHeaderContainer,
+.welcomePageFlexContainer,
+.scrollWrapper,
+.addTaskButton,
+.addTaskButtonContainer  {
   display: flex;
 }
 
@@ -89,7 +94,6 @@ button {
   background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
   min-height: 100vh;
   color: white;
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -141,7 +145,6 @@ button {
 }
 
 .welcomePageFlexContainer {
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -224,9 +227,8 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 .scrollWrapper {
   min-height: 300px;
   overflow-x: scroll;
-  overflow-y: hidden;
-  display: flex;
   position: relative;
+  padding-bottom: 100px;
 }
 
 .cardContainer {
@@ -236,8 +238,6 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   margin: 0 20px auto 0;
   padding-bottom: 10px;
   flex-shrink: 0;
-  max-height: 320px;
-  overflow-y: auto;
 }
 
 .cardContainer h2 {
@@ -273,7 +273,6 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   font-weight: 600;
   padding: 10px 0;
   margin-left: 15px;
-  display: flex;
   align-items: center;
 }
 
@@ -282,7 +281,6 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
 }
 
 .addTaskButtonContainer {
-  display: flex;
   align-items: center;
 }
 
@@ -343,7 +341,7 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   color: white;
   display: inline-block;
   position: absolute;
-  top: 28%;
+  top: 80px;
   left: 281px;
   min-width: 417px;
 }
