@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../utils/firebase.js';
-import Task from './Task.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import CardContainer from './CardContainer.js';
 
 
 class Main extends Component {
@@ -13,6 +11,7 @@ class Main extends Component {
       tasks: [],
       userInput: '',
       isAddingTask: false,
+      listHeaderTitles: ['Task List', 'In Progress', 'Done'],
     }
   }
 
@@ -28,7 +27,11 @@ class Main extends Component {
 
       // for in loop to access each task item in our data object and push each task item to our new state array
       for (let key in data) {
-        newState.push({key: key, value: data[key]});
+        newState.push({
+          key: key, 
+          value: data[key].taskItemDescription, 
+          status: data[key].taskStatus
+        });
       }
 
       // execute setState to initiate re-render which will update our page with task items in database (current and new ones (if there are any new ones) )
@@ -56,7 +59,12 @@ class Main extends Component {
       // reference to database
       const dbRef = firebase.database().ref();
       // whatever value is in state for userInput on submission/button click, we want to add this to our database
-      dbRef.push(this.state.userInput);
+      // also adding in default task status when task card is created so card would go into correct column
+      const taskItemObject = {
+        taskItemDescription: this.state.userInput,
+        taskStatus: 'Task List',
+      }
+      dbRef.push(taskItemObject);
       // reset state of input so it's blank
       this.setState({
         userInput: '',
@@ -80,50 +88,41 @@ class Main extends Component {
       <main>
         <div className="wrapper">
           <div className="scrollWrapper">
-            <section className="cardContainer">
-              <h2>Task List</h2>
-              { this.state.tasks.map((task) => {
-                  return (
-                    <div key={task.key} className="taskItem">
-                      <Task 
-                        dbRefInfo={firebase.database()}
-                        taskValue={task.value}
-                        taskKey={task.key}
-                      />
-                    </div>
-                  )
-                }) 
-              }
-
-              { this.state.isAddingTask ? 
-                <div className="taskItem">
-                  <Task 
-                    toggleAddingClass={this.toggleAddingTaskState} 
-                    addingTaskState={this.state.isAddingTask}
+            { this.state.listHeaderTitles.filter((title) => title === 'Task List')
+              .map((title) => {
+                return (
+                  <CardContainer 
+                    key={title}
+                    headerName={title}
+                    tasksArray={this.state.tasks}
                     dbRefInfo={firebase.database()}
-                    inputVal={this.handleChange} 
-                    userInputState={this.state.userInput} 
+                    toggleAddingTaskState={this.toggleAddingTaskState}
+                    addingTaskState={this.state.isAddingTask}
+                    inputVal={this.handleChange}
+                    userInputState={this.state.userInput}
                     handleClick={this.handleClick}
+                    listHeaderTitles={this.state.listHeaderTitles}
                   />
-                </div> :
-                <button className="addTaskButton" onClick={this.toggleAddingTaskState}>
-                  <FontAwesomeIcon icon={faPlusCircle} className="plusSignIcon" />
-                  Add new task item
-                </button>
-              }
-            </section>
+                )
+              })
+            }
 
-            <section className="cardContainer">
-              <h2>In Progress</h2>
-            </section>
-
-            <section className="cardContainer">
-              <h2>Done</h2>
-            </section>
-
-            <div className="notificationContainer">
-              <p>Feature to move tasks is currently in development</p>
-            </div>
+            { this.state.listHeaderTitles.filter((title) => title !== 'Task List')
+              .map((title) => {
+                return (
+                  <CardContainer 
+                    key={title}
+                    headerName={title}
+                    tasksArray={this.state.tasks}
+                    dbRefInfo={firebase.database()}
+                    inputVal={this.handleChange}
+                    userInputState={this.state.userInput}
+                    handleClick={this.handleClick}
+                    listHeaderTitles={this.state.listHeaderTitles}
+                  />
+                )
+              })
+            }
           </div>  {/*  .scrollWrapper end  */}
         </div>  {/*  .wrapper end  */}
       </main>
