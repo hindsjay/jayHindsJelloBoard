@@ -10,6 +10,7 @@ class Task extends Component {
     this.state = {
       editing: false,
       editingInputValue: '',
+      isMovePopUpShown: false,
     };
   }
   
@@ -33,11 +34,16 @@ class Task extends Component {
   }
 
   // save task function - fires when save button is clicked in "editing" mode
-  saveTask = (referenceToDb, task) => {
+  saveTask = (referenceToDb, taskObject) => {
+    const { key, status } = taskObject;
     // reference to our database but reference to the specific task item we want to update the value of
-    const taskItemInDb = referenceToDb.ref(task);
+    const taskItemInDb = referenceToDb.ref(key);
+
     // updating the task value in our database to the value that's in our editingInput state
-    taskItemInDb.set(this.state.editingInputValue);
+    taskItemInDb.set({
+      taskItemDescription: this.state.editingInputValue,
+      taskStatus: status,
+    });
 
     this.setState({
       editing: !this.state.editing,
@@ -45,17 +51,38 @@ class Task extends Component {
     })
   } 
 
+    // function to move task to chosen status column
+    moveTask = (event, referenceToDb, taskObject) => {
+      const buttonClicked = event.target;
+      const { key, value } = taskObject;
+      const taskItemInDb = referenceToDb.ref(key);
+  
+      taskItemInDb.set({
+        taskItemDescription: value,
+        taskStatus: buttonClicked.innerHTML,
+      });
+    }
+  
+    // show move pop-up function - fires when option in move button is clicked to show options for 
+    // moving a card
+    showMovePopUp = () => {
+      this.setState({
+        isMovePopUpShown: !this.state.isMovePopUpShown,
+      })
+    }
+
   
   render() {
     const { 
-      taskValue, 
-      taskKey, 
+      taskObject,
       dbRefInfo, 
       toggleAddingClass, 
       addingTaskState, 
       inputVal, 
       userInputState, 
-      handleClick 
+      handleClick,
+      headerName, 
+      listHeaderTitles,
     } = this.props;
 
     return (
@@ -73,12 +100,17 @@ class Task extends Component {
           <EditTask 
             editInputValue={this.state.editingInputValue}
             editHandleChange={this.editHandleChange}
-            saveTask={ () => {this.saveTask(dbRefInfo, taskKey)} }
+            saveTask={ () => {this.saveTask(dbRefInfo, taskObject)} }
+            showMovePopUp={this.showMovePopUp}
+            moveTask={ (event) => {this.moveTask(event, dbRefInfo, taskObject)} }
+            isMovePopUpShown={this.state.isMovePopUpShown}
+            headerName={headerName}
+            listHeaderTitles={listHeaderTitles}
           /> :
           <TaskItem
-            taskValue={taskValue}
-            editTask={ () => {this.editTask(taskValue)} }
-            removeTask={ () => {this.removeTask(dbRefInfo, taskKey)} }
+            taskValue={taskObject.value}
+            editTask={ () => {this.editTask(taskObject.value)} }
+            removeTask={ () => {this.removeTask(dbRefInfo, taskObject.key)} }
           /> 
         }
       </Fragment>

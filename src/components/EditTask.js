@@ -3,8 +3,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 
-// props destructured
-function EditTask({ editInputValue, editHandleChange, saveTask, inputVal, userInputState, saveButton, addingTaskState, toggleAddingClass }) {
+function EditTask(props) {
+
+  const {
+    editInputValue, 
+    editHandleChange, 
+    saveTask, 
+    inputVal, 
+    userInputState, 
+    saveButton, 
+    addingTaskState, 
+    toggleAddingClass, 
+    moveTask,
+    isMovePopUpShown,
+    showMovePopUp,
+    headerName,
+    listHeaderTitles
+  } = props;
+
+
   return (
     <Fragment>
       <form className="taskForm">
@@ -35,7 +52,24 @@ function EditTask({ editInputValue, editHandleChange, saveTask, inputVal, userIn
             </button>
           </div>
           :
-          <button className="saveButton editModeButton" type="submit" onClick={saveTask}>Save</button>
+          <Fragment>
+            <button className="saveButton editModeButton" type="submit" onClick={saveTask}>Save</button>
+            <button className="moveButton editModeButton" type="button" onClick={showMovePopUp}>Move</button>
+            { isMovePopUpShown && 
+              <div className="popUpContainer">
+                <p>Update Status:</p>
+                <div className="moveButtonOptionsContainer">
+                  { listHeaderTitles.filter((title) => title !== headerName)
+                    .map((title, index) => {
+                      return (
+                      <button key={index} type="button" onClick={ (event) => moveTask(event) }>{title}</button>
+                      )
+                    })
+                  }
+                </div>
+              </div>
+            }
+          </Fragment>
         }
       </form>
     </Fragment>
