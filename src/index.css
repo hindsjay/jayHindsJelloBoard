@@ -300,6 +300,10 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   font-size: 1.7rem;
 }
 
+.taskForm {
+  position: relative;
+}
+
 .taskForm input {
   padding: 3px 0 3px 2px;
   font-size: 1.7rem;
@@ -331,9 +335,52 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
   background: rgb(85, 209, 85);
 }
 
+.moveButton {
+  background-color: rgb(110, 6, 173);
+}
+
 .saveButton:hover,
 .saveButton:focus {
   background: rgba(85, 209, 85, .6);
+}
+
+.moveButton:hover,
+.moveButton:focus {
+  background-color: rgba(110, 6, 173, .6);
+}
+
+.popUpContainer {
+  padding: 20px;
+  background: rgba(0, 0, 0, .8);
+  color: white;
+  position: absolute;
+  top: 89%;
+  left: 39%;
+  width: 150px;
+  font-size: 1.5rem;
+}
+
+.popUpContainer p {
+  font-size: 1.4rem;
+  margin-bottom: 3px;
+}
+
+.moveButtonOptionsContainer button {
+  border: 1px solid white;
+  color: inherit;
+  background: none;
+  padding: 5px 8px;
+  font-size: inherit;
+}
+
+.moveButtonOptionsContainer button {
+  margin-bottom: 8px;
+}
+
+.moveButtonOptionsContainer button:hover,
+.moveButtonOptionsContainer button:focus {
+  background: rgb(85, 209, 85);
+  border: 1px solid rgb(85, 209, 85);
 }
 
 .notificationContainer {
